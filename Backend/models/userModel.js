@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     lastname : String ,
     email : {type : String , unique: true},
     password : String ,
-    image : {type : String , default: avatar.png}
+    image : {type : String , default: 'avatar.png'}
 
 })
 

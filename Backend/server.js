@@ -2,8 +2,9 @@ const express = require("express");
 const cors = require('cors');
 const mongoose = require ("mongoose");
 require('dotenv').config();
-
-
+const userRoute = require("./routes/userRoute");
+const serviceRoute = require("./routes/serviceRoute")
+const proposalRoute = require("./routes/proposalRoute")
 
 const app = express() ;
 // Middleware
@@ -18,6 +19,12 @@ mongoose
 app.get('/', (req, res) => {
     res.send('server work')
 });
+
+app.use('/users' , userRoute) ;
+app.use('/services ', serviceRoute) ;
+app.use('/proposals' , proposalRoute) ;
+
+
 
 
 
