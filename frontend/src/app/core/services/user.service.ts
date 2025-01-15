@@ -26,4 +26,20 @@ export class UserService {
     return this.http.put (this.url + id , userData) ;
   }
 
+  isLoggedIn(){
+    let token = localStorage.getItem('token');
+    if(token){
+      return true ;
+    }else{
+      return false ;
+    }
+  }
+
+  getUserIdFromToken(){
+    let token = localStorage.getItem('token');
+    if(token){
+      return JSON.parse(window.atob(token.split('.')[1])).id ;
+    }
+  }
+
 }
