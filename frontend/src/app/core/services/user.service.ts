@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  url = "http://127.0.0.1:4200/users/"
+  url = "http://127.0.0.1:5000/users/"
 
   constructor(private http : HttpClient) {}
 
@@ -27,7 +27,7 @@ export class UserService {
   }
 
   isLoggedIn(){
-    let token = localStorage.getItem('token');
+    let token = localStorage.getItem('token'); //recuperation du jeton JWT depuis le stockage local (localStorage) sous la clé 'token'.
     if(token){
       return true ;
     }else{
