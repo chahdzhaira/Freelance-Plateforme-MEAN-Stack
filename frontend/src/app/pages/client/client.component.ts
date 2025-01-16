@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-client',
@@ -9,5 +9,12 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './client.component.css'
 })
 export class ClientComponent {
+
+constructor(private router : Router){}
+
+logout(){
+  localStorage.removeItem('token');
+  this.router.navigate(['/login']);
+}
 
 }
