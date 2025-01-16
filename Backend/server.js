@@ -7,8 +7,10 @@ const serviceRoute = require("./routes/serviceRoute")
 const proposalRoute = require("./routes/proposalRoute")
 
 const app = express() ;
-// Middleware
+// Middleware pour analyser les requêtes JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // Pour analyser les requêtes de type URL-encoded
+
 app.use(cors());
 
 // Connexion à MongoDB

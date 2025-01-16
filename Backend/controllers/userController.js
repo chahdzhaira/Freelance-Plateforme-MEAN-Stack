@@ -17,7 +17,8 @@ exports.register = async (req ,res)=>{
     }
 }
 
-exports.login = async (res , req) => {
+exports.login = async (req , res) => {
+
     const { email , password }= req.body ;
     
     try{
@@ -28,7 +29,7 @@ exports.login = async (res , req) => {
         }
         const passValid = await bcrypt.compare(password , user.password) ;
         if(!passValid){
-            return res.status(500).json({message : 'invalid credentials :'}) ; 
+            return res.status(400).json({message : 'invalid credentials !'}) ; 
         }
 
         const token = jwt.sign({ id : user._id} , '987654321' , {expiresIn : '1h'}); 
@@ -40,7 +41,7 @@ exports.login = async (res , req) => {
     }
 }
 
-exports.getUserById = async (res , req) => {
+exports.getUserById = async (req , res) => {
     try{
 
         const user = await User.findById(req.params.id);
@@ -51,7 +52,7 @@ exports.getUserById = async (res , req) => {
     }
 }
 
-exports.EditUser = async (res , req) => {
+exports.EditUser = async (req , res) => {
     
     try{
         const updatedUser = await User.findByIdAndUpdate(req.params.id , req.body , {new : true});
