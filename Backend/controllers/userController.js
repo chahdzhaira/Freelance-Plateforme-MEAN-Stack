@@ -52,16 +52,66 @@ exports.getUserById = async (req , res) => {
     }
 }
 
+/** sans le cryptage du password lors du modif */
+
+// exports.EditUser = async (req , res) => {
+    
+//     try{
+//         const updatedUser = await User.findByIdAndUpdate(req.params.id , req.body , {new : true});
+//         if (!updatedUser) {
+//             return res.status(404).json({message : "user not found ! "});
+//         }
+    
+//         res.status(200).json({massage : "user updated successfully ! " , updatedUser});
+//     }catch(error){
+//         res.status(500).json({message : error.message});
+//     }
+// }
+
+
+/** avec le cryptage du password lors du modif */
+
 exports.EditUser = async (req , res) => {
     
     try{
+
+        if(req.body.password){
+            req.body.password = await bcrypt.hash( req.body.password, 10 );
+        }
         const updatedUser = await User.findByIdAndUpdate(req.params.id , req.body , {new : true});
         if (!updatedUser) {
             return res.status(404).json({message : "user not found ! "});
         }
-
+    
         res.status(200).json({massage : "user updated successfully ! " , updatedUser});
     }catch(error){
         res.status(500).json({message : error.message});
     }
 }
+
+//ou bien 
+
+// exports.EditUser = async (req , res) => {
+    
+//     try{
+//         const user = await User.findById(req.params.id);
+//         if (!user) {
+//             return res.status(404).json({ message: "Utilisateur non trouvé !" });
+//         }
+
+//         if ( req.body.password){
+//             req.body.password = await bcrypt.hash(req.body.password , 10);
+//         }
+
+//         // Appliquer les modifications à l'utilisateur
+//         Object.assign(user, req.body); // Applique les modifications de req.body à l'utilisateur récupéré
+
+//         // Sauvegarder l'utilisateur avec les nouvelles informations
+//         const updatedUser = await user.save();   
+
+//         res.status(200).json({message : "user updated successfully ! " , updatedUser});
+//     }catch(error){
+//         res.status(500).json({message : error.message});
+//     }
+// }
+
