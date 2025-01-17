@@ -25,75 +25,74 @@
             </div>
             
             <div class="_dashboard_content_body">
-                <div class="row">
-
-                    <div class="col-xl-4 col-lg-6">
-                        <div class="form-group">
-                            <label>Project Name</label>
-                            <input type="text" class="form-control with-light">
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-4 col-lg-6">
-                        <div class="form-group with-light">
-                            <label>Category</label>
-                            <select id="jb-category" class="form-control ">
-                                <option value=""></option>
-                                <option value="Finance & Accounting">Finance & Accounting</option>
-                                <option value="Banking">Banking</option>
-                                <option value="Medical & Health">Medical & Health</option>
-                                <option value="Human Resources">Human Resources</option>
-                                <option value="IT & Computor">IT & Computor</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-4 col-lg-6">
-                        <div class="form-group">
-                            <label>Location</label>
-                            <input type="text" class="form-control with-light">
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-6 col-lg-6">
-                        <label>Salary</label>
-                        <div class="form-row">
-                            <div class="col-xl-6 col-lg-6 col-md-6">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control with-light br-0">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text light">USD</span>
-                                    </div>
+                
+                    <form [formGroup] ="postForm" (ngSubmit)="create()" > 
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6">
+                                <div class="form-group">
+                                    <label>Project Name</label>
+                                    <input type="text" formControlName="name" [ngClass]="{'form-control with-light' : true , 'error' : postForm.controls['name'].touched && postForm.controls['name'].invalid}">
                                 </div>
                             </div>
                             
+                            <div class="col-xl-4 col-lg-6">
+                                <div class="form-group with-light">
+                                    <label>Category</label>
+                                    <select id="jb-category" formControlName="category" [ngClass]="{'form-control with-light' : true , 'error' : postForm.controls['category'].touched && postForm.controls['category'].invalid}">
+                                        <option value=""></option>
+                                        <option value="Finance & Accounting">Finance & Accounting</option>
+                                        <option value="Banking">Banking</option>
+                                        <option value="Medical & Health">Medical & Health</option>
+                                        <option value="Human Resources">Human Resources</option>
+                                        <option value="IT & Computor">IT & Computor</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xl-4 col-lg-6">
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <input type="text" formControlName="location" [ngClass]="{'form-control with-light' : true , 'error' : postForm.controls['location'].touched && postForm.controls['location'].invalid}">
+                                </div>
+                            </div>
+                            
+                            <div class="col-xl-6 col-lg-6">
+                                <label>Salary</label>
+                                <div class="form-row">
+                                    <div class="col-xl-6 col-lg-6 col-md-6">
+                                        <div class="input-group mb-3">
+                                            <input type="text" formControlName="salary" [ngClass]="{'form-control with-light' : true , 'error' : postForm.controls['salary'].touched && postForm.controls['salary'].invalid}">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text light">USD</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                        
+                            
+                        
+                            
+                            <div class="col-xl-12 col-lg-12">
+                                <div class="form-group">
+                                    <label>Job Description</label>
+                                    <textarea formControlName="description" [ngClass]="{'form-control with-light' : true , 'error' : postForm.controls['description'].touched && postForm.controls['description'].invalid}"></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xl-12 col-lg-12">
+                                <div class="form-group">
+                                    <label>Image</label>
+                                    <input type="file"  (change) = "selectImage($event)" class="form-control with-light" >
+                                </div>
+                            </div>
+
+                            <button type="submit" [disabled]="postForm.invalid" class="btn btn-save">Submit Job</button>
                         </div>
-                    </div>
-                    
-                   
-                    
-                   
-                    
-                    <div class="col-xl-12 col-lg-12">
-                        <div class="form-group">
-                            <label>Job Description</label>
-                            <textarea class="form-control with-light"></textarea>
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-12 col-lg-12">
-                        <div class="form-group">
-                            <label>Image</label>
-                            <input type="file"  class="form-control with-light" >
-                        </div>
-                    </div>
-                    
-                </div>
+                    </form>
             </div>
-        </div>
-        <!-- Single Wrap End -->
-        
-        <button type="button" class="btn btn-save">Submit Job</button>
-        
+        </div>       
     </div>
 </div>

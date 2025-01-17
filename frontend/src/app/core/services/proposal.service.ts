@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class ProposalService {
 
-  private url = "http://127.0.0.1:4200/proposals/"
+  private url = "http://127.0.0.1:5000/proposals/"
 
   constructor(private http : HttpClient) { }
 
