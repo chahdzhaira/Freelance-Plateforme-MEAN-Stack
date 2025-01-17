@@ -27,6 +27,7 @@ app.use('/services ', serviceRoute) ;
 app.use('/proposals' , proposalRoute) ;
 
 
+app.use('/image' , express.static('./public'));
 
 
 
