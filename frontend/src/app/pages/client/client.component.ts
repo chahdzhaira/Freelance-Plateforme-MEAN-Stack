@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-client',
@@ -10,7 +11,24 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 })
 export class ClientComponent {
 
-constructor(private router : Router){}
+  user : any ;
+
+constructor(private router : Router , private _user : UserService){}
+
+ngOnInit(): void {
+  this._user.getUserById(this._user.getUserIdFromToken()).subscribe({
+    next : (res : any) =>{
+      console.log('Réponse API :', res);
+      console.log('Réponse :', res.user);
+
+      this.user = res.user ;
+
+    },
+    error: (err) => {
+      console.error('Erreur API :', err);
+    },
+  })
+}
 
 logout(){
   localStorage.removeItem('token');
