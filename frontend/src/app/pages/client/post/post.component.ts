@@ -34,8 +34,9 @@ export class PostComponent {
   }
 
   selectImage(e: any) {
-    this.image = e.target.value;
+    this.image = e.target.files[0];
   }
+
 
   create() {
 

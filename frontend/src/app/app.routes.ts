@@ -16,7 +16,7 @@ export const routes: Routes = [
         {path: 'my-proposals' , loadComponent: () => import('./pages/client/proposals/proposals.component').then (c => c.ProposalsComponent)},
         {path: 'my-services' , loadComponent: () => import('./pages/client/my-services/my-services.component').then (c => c.MyServicesComponent)},
         {path: 'post' , loadComponent: () => import('./pages/client/post/post.component').then (c => c.PostComponent)},
-        {path: 'service-proposal' , loadComponent: () => import('./pages/client/service-proposals/service-proposals.component').then (c => c.ServiceProposalsComponent)}
+        {path: 'service-proposals/:id' , loadComponent: () => import('./pages/client/service-proposals/service-proposals.component').then (c => c.ServiceProposalsComponent)}
 
     ]} ,
     {path: '**' , loadComponent : ()=> import('./pages/home/home.component').then(c => c.HomeComponent)}
