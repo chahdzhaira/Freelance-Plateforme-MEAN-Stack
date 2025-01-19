@@ -28,34 +28,38 @@
                 <div class="row">
                     
                     <!-- Single List -->
+                     @for (proposal of proposals ; track proposal._id ){
                     <div class="col-xl-4 col-lg-6 col-md-6">
                         <div class="_dash_grid_box">
-                            <div class="_dash_remove_wrap"><a href="#" data-toggle="tooltip" data-placement="top" title="Remove" class="_trash_removeal"><i class="fa fa-trash"></i></a></div>
+                            <div class="_dash_remove_wrap"><a (click)="delete(proposal._id)" data-toggle="tooltip" data-placement="top" title="Remove" class="_trash_removeal"><i class="fa fa-trash"></i></a></div>
                             <div class="_dash_grid_box_thumb">
-                                <img src="assets/img/team-1.jpg" class="img-fluid circle">
+                                <img [src]="'http://127.0.0.1:5000/image/' + proposal.idUser.image" class="img-fluid circle">
                             </div>
                             <div class="_dash_grid_box_caption">
-                                <span class="_elopi_location"><i class="ti-location-pin mr-1"></i>Denver, USA</span>
-                                <h4 class="_elcio_title"><a href="#">Jack J. Nabors</a></h4>
+                                <h4 class="_elcio_title"><a href="#">{{proposal.idUser.firstname + ' ' + proposal.idUser.lastname}}</a></h4>
                               
                                 
                                 <div class="_dash_usr_bid_rate">
                                     <ul>
-                                        <li>$5500<span>Fixed price</span></li>
-                                        <li>08 Days<span>Delivery Time</span></li>
+                                        <li>${{proposal.price}}<span>Fixed price</span></li>
+                                        <li>{{proposal.days}} Days<span>Delivery Time</span></li>
                                     </ul>																
                                 </div>
                                 
                                 <div class="_dash_usr_actioned">
                                     <ul>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="Accept Offer" class="_download_cv"><i class="fa fa-check"></i>Accept Offer</a></li>
-
+                                        @if(proposal.status == false){
+                                            <li><a (click)="accept(proposal._id)" data-toggle="tooltip" data-placement="top" title="Accept Offer" class="_download_cv"><i class="fa fa-check"></i>Accept Offer</a></li>
+                                        }@else {
+                                            <li><a  data-toggle="tooltip" data-placement="top" title="Accept Offer" class="_download_cv"><i class="fa fa-check"></i>Accepted</a></li>
+                                        }
                                     </ul>																
                                 </div>
                             </div>
                            
                         </div>
                     </div>
+                }
                     
               
                     
